@@ -51,14 +51,15 @@ A production-quality full-stack Grocery Store platform that provides a complete 
 3. Start the development server: `npm run dev`
 4. Open your browser and go to the provided localhost URL.
 
-## 🔑 Demo Accounts
+## 🔑 Testing the Application
 
-Use the following credentials to explore different roles within the application:
+To explore the Admin dashboard and restricted areas, you must create a new Admin account.
 
-- **Admin**: admin@minidmart.com / password
-- **Manager**: manager@minidmart.com / password
-- **Staff**: staff@minidmart.com / password
-- **Customer**: customer@minidmart.com / password
+1. Go to the Registration page.
+2. Select **Admin** from the Role dropdown.
+3. When prompted for the Admin Secret Code, enter: `admin123`
+
+You can also register as a normal Customer (which requires no secret code) to test the shopping cart and checkout flows.
 
 ## 📄 License
 This project is proprietary and built as a comprehensive e-commerce showcase.
