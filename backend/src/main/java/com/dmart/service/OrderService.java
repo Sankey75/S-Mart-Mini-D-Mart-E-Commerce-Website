@@ -56,6 +56,11 @@ public class OrderService {
 
         BigDecimal subtotal = BigDecimal.ZERO;
         
+        order.setSubtotal(BigDecimal.ZERO);
+        order.setDeliveryFee(BigDecimal.ZERO);
+        order.setTotalAmount(BigDecimal.ZERO);
+        order.setDiscount(BigDecimal.ZERO);
+        
         // In a real app we'd fetch address using request.getAddressId()
         // order.setAddress(...)
 
