@@ -1,5 +1,7 @@
 # S-Mart (Mini D-Mart) E-Commerce Platform
 
+**🌐 Live Demo:** [https://s-mart-mini-d-mart-e-commerce-websi.vercel.app/](https://s-mart-mini-d-mart-e-commerce-websi.vercel.app/)
+
 A production-quality full-stack Grocery Store platform that provides a complete e-commerce solution with role-based access control, product management, and a robust shopping cart system.
 
 ## 🚀 Features
