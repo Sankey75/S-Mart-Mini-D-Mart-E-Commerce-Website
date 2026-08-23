@@ -9,6 +9,7 @@ const ProductManagement = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   
+  const [editingId, setEditingId] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [newProduct, setNewProduct] = useState({
     name: '',
@@ -45,9 +46,32 @@ const ProductManagement = () => {
         toast.success("Product deleted");
         fetchData();
       } catch (e) {
-        toast.error("Failed to delete product");
+        toast.error("Cannot delete product because it has been ordered. Try editing and setting it to inactive.");
       }
     }
+  };
+
+  const handleEditClick = (p) => {
+    setNewProduct({
+      name: p.name,
+      description: p.description || '',
+      price: p.price,
+      categoryId: p.category?.id || '',
+      sku: p.sku,
+      imageUrl: p.imageUrl || '',
+      unit: p.unit || '',
+      active: p.active
+    });
+    setEditingId(p.id);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setEditingId(null);
+    setNewProduct({
+      name: '', description: '', price: '', categoryId: '', sku: '', imageUrl: '', unit: '', active: true
+    });
   };
 
   const handleCreateSubmit = async (e) => {
@@ -62,15 +86,19 @@ const ProductManagement = () => {
         price: parseFloat(newProduct.price),
         category: { id: parseInt(newProduct.categoryId) }
       };
-      await productService.createProduct(payload);
-      toast.success("Product created successfully!");
-      setShowModal(false);
-      setNewProduct({
-        name: '', description: '', price: '', categoryId: '', sku: '', imageUrl: '', unit: '', active: true
-      });
+      
+      if (editingId) {
+        await productService.updateProduct(editingId, payload);
+        toast.success("Product updated successfully!");
+      } else {
+        await productService.createProduct(payload);
+        toast.success("Product created successfully!");
+      }
+      
+      handleCloseModal();
       fetchData();
     } catch (e) {
-      toast.error("Failed to create product");
+      toast.error(editingId ? "Failed to update product" : "Failed to create product");
     }
   };
 
@@ -78,7 +106,7 @@ const ProductManagement = () => {
     <div className="manager-page-container">
       <div className="manager-page-header">
         <h1 className="manager-page-title">Product Management</h1>
-        <button className="btn-primary" onClick={() => setShowModal(true)}>Add New Product</button>
+        <button className="btn-primary" onClick={() => { setEditingId(null); setShowModal(true); }}>Add New Product</button>
       </div>
       
       {loading ? <div className="manager-empty">Loading...</div> : (
@@ -112,7 +140,7 @@ const ProductManagement = () => {
                     </span>
                   </td>
                   <td>
-                    <button className="action-btn edit">Edit</button>
+                    <button onClick={() => handleEditClick(p)} className="action-btn edit">Edit</button>
                     <button onClick={() => handleDelete(p.id)} className="action-btn delete">Delete</button>
                   </td>
                 </tr>
@@ -125,7 +153,9 @@ const ProductManagement = () => {
       {showModal && (
         <div className="modal-overlay">
           <div className="modal-content" style={{maxWidth: '600px'}}>
-            <h2 style={{fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--primary-dark)'}}>Add New Product</h2>
+            <h2 style={{fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--primary-dark)'}}>
+              {editingId ? 'Edit Product' : 'Add New Product'}
+            </h2>
             <form onSubmit={handleCreateSubmit} style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
               
               <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem'}}>
@@ -175,8 +205,8 @@ const ProductManagement = () => {
               </div>
 
               <div style={{display: 'flex', justifyContent: 'flex-end', gap: '1rem', marginTop: '1rem'}}>
-                <button type="button" className="btn-secondary" onClick={() => setShowModal(false)}>Cancel</button>
-                <button type="submit" className="btn-primary">Create Product</button>
+                <button type="button" className="btn-secondary" onClick={handleCloseModal}>Cancel</button>
+                <button type="submit" className="btn-primary">{editingId ? 'Update Product' : 'Create Product'}</button>
               </div>
             </form>
           </div>
