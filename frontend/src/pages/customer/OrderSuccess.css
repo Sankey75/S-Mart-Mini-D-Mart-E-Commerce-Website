@@ -1,0 +1,106 @@
+.order-success-container {
+  max-width: 600px;
+  margin: 5rem auto;
+  padding: 3rem 2rem;
+  background: var(--white);
+  text-align: center;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border-top: 8px solid var(--primary);
+  animation: fadeIn 0.4s ease-out;
+}
+
+.order-success-icon-wrapper {
+  width: 5rem;
+  height: 5rem;
+  background: var(--primary-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.order-success-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--primary);
+}
+
+.order-success-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin-bottom: 0.5rem;
+}
+
+.order-success-message {
+  color: #4a5568;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.order-success-details {
+  background: #f7fafc;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2.5rem;
+  border: 1px dashed #cbd5e0;
+}
+
+.order-success-label {
+  font-size: 0.9rem;
+  color: #718096;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.order-success-number {
+  font-size: 1.8rem;
+  font-family: monospace;
+  font-weight: 800;
+  color: var(--primary-dark);
+  letter-spacing: 2px;
+}
+
+.order-success-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.order-success-btn-primary {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  background: linear-gradient(135deg, var(--primary-dark), #2E7D32);
+  color: var(--white);
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(27, 94, 32, 0.2);
+}
+
+.order-success-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(27, 94, 32, 0.3);
+}
+
+.order-success-btn-secondary {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  background: #e2e8f0;
+  color: #2d3748;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.order-success-btn-secondary:hover {
+  background: #cbd5e0;
+  transform: translateY(-2px);
+}

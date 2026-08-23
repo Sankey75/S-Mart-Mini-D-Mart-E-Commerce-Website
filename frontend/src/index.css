@@ -1,0 +1,11 @@
+/* Removed default Vite styles to prevent interference with our custom organic green theme in App.css */
+body {
+  margin: 0;
+}
+#root {
+  width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
