@@ -89,7 +89,7 @@ public class OrderService {
             orderItems.add(orderItemRepository.save(orderItem));
         }
 
-        order.setItems(orderItems);
+        order.getItems().addAll(orderItems);
         order.setSubtotal(subtotal);
         
         BigDecimal deliveryFee = request.getFulfillmentType() == FulfillmentType.HOME_DELIVERY 
